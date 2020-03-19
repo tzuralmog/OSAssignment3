@@ -146,3 +146,24 @@ int main(int argc, char *argv[])
 	}
 }
 
+
+/*  here's the producer signal handler below       */
+
+
+void    sig_handler(int sig)
+{
+	int	i,j,k;
+
+	printf("In signal handler with signal # %d\n",sig);
+
+	if(shmctl(shmid, IPC_RMID, 0) == -1){
+		perror("handler failed shm RMID: ");
+	}
+	for(i = 0; i < NUMSEMIDS; i++){
+	  if(semctl (semid[i], 0, 
+ 			    IPC_RMID) == -1){
+		perror("handler failed sem RMID: ");
+	  }
+	}
+        exit(5);
+}

@@ -10,8 +10,8 @@
 #include <sys/shm.h>
 #include <sys/signal.h>
 
-#define		SEMKEY			(key_t)548341763
-#define		MEMKEY			(key_t)548341763
+#define		SEMKEY			(key_t)448341763
+#define		MEMKEY			(key_t)448341763
 #define		NUMFLAVORS	 	4
 #define		NUMSLOTS       		50
 #define		NUMSEMIDS	 	3
@@ -27,34 +27,3 @@ struct	donut_ring{
 extern int		p (int, int);
 extern int		v (int, int);
 extern int		semsetall (int, int, int);
-
-
-
-
-
-
-
-
-/*  here's the producer signal handler below       */
-
-
-void    sig_handler(int sig)
-{
-	int	i,j,k;
-
-	printf("In signal handler with signal # %d\n",sig);
-
-	if(shmctl(shmid, IPC_RMID, 0) == -1){
-		perror("handler failed shm RMID: ");
-	}
-	for(i = 0; i < NUMSEMIDS; i++){
-	  if(semctl (semid[i], 0, 
- 			    IPC_RMID) == -1){
-		perror("handler failed sem RMID: ");
-	  }
-	}
-        exit(5);
-}
-
-
-
