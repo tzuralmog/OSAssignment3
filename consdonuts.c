@@ -12,6 +12,7 @@ gettimeofday ( &randtime, ( struct timezone * ) 0 );
 	xsub [2] = ( ushort ) ( getpid() );
          for( i = 0; i < 10; i++ ) {
            for( m = 0; m < 12; m++ ) {
+                // j = rand num
                j = nrand48( xsub ) & 3;
 			.
 			.

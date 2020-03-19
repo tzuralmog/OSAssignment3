@@ -135,6 +135,7 @@ int main(int argc, char *argv[])
 /*  produce a new item into the selected ring buffer        */
 
 	while(1){
+        // j = rand num
 		j=nrand48(xsub1) & 3;
 		.
 		.
